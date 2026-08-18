@@ -23,6 +23,21 @@
     }
     .ach-card:hover .click-hint { opacity: 1; }
 
+    .ach-badge {
+      display: inline-block; background: #FFF3ED; color: #C8501A;
+      font-size: 10px; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; padding: 3px 10px;
+      border-radius: 12px; margin-bottom: 8px;
+    }
+    .ach-meta {
+      font-size: 0.85em; color: #C8501A; font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .ach-desc {
+      font-size: 0.9em; color: #666; line-height: 1.6;
+      margin-bottom: 8px;
+    }
+
     /* ── Modal overlay ── */
     .modal-overlay {
       display: none;
@@ -207,11 +222,12 @@
   <nav class="site-nav">
     <div class="nav-inner">
       <a href="index.html" class="nav-brand">Feifei Li <em>(say: Fayfay)</em></a>
+      <button class="hamburger" aria-label="Toggle menu">&#9776;</button>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="projects.html">Projects</a></li>
         <li><a href="achievements.html" class="active">Achievements</a></li>
-        <li><a href="life.html">Life &amp; Craft</a></li>
+        <li><a href="experience.html">Experience</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
@@ -315,8 +331,6 @@
       <ul class="ach-list">
         <li><strong>1st Place &mdash; Minnesota AGENT.AI Competition</strong> &middot; State winner. Built a retail-banking fraud detection system using feature engineering and predictive scoring.</li>
         <li><strong>1st Place &mdash; HeatMap Hackathon (19 teams)</strong> &middot; Perfect 5.0/5.0 for Innovation &amp; Data Integration. Identified geographic blind spots in burn-care access.</li>
-        <li><strong>TeamUp</strong> &middot; A Streamlit app I designed and shipped to help student orgs and small teams form balanced project groups by skills, availability, and goals &mdash; turning &ldquo;who&rsquo;s free?&rdquo; into &ldquo;who fits?&rdquo;</li>
-        <li><strong>Team Doctor</strong> &middot; A diagnostic Streamlit app that surfaces team-health signals (role clarity, ownership gaps, communication friction) so leaders can fix structure before it breaks people.</li>
         <li><strong>AI Magic Night &mdash; July 8, 2026</strong> &middot; Demoing TeamUp &amp; Team Doctor to faculty and the Twin Cities AI community.</li>
         <li><strong>TCDSA Innovation Studio &mdash; Nonprofit AI Cohort (Mar&ndash;Jun 2026)</strong> &middot; 3-month build cohort with the Twin Cities Data Science &amp; Analytics community. Contributed to a local-model AI coach prototype designed for nonprofit use &mdash; owning a scoped workstream from problem definition to delivery.</li>
       </ul>
@@ -332,27 +346,93 @@
       <h3>&#127894; Honors &amp; Awards</h3>
 
       <h4 class="sub-heading">Scholarships</h4>
-      <ul class="ach-list">
-        <li><span class="award-name">Elizabeth Pegues Matching Scholarship (2026&ndash;27)</span> <span class="award-org">&middot; Students United &middot; Awarded as a match to recognize recipients of competitive Minnesota-based scholarships.</span></li>
-        <li><span class="award-name">APIA / Wells Fargo Foundation AANAPISI Scholarship (2025&ndash;2026)</span> <span class="award-org">&middot; APIA Scholars &middot; Multi-year national award recognizing academic achievement and community leadership.</span></li>
-        <li><span class="award-name">Kopp Family Foundation Scholarship (2025&ndash;26)</span> <span class="award-org">&middot; Metropolitan State University Foundation.</span></li>
-        <li><span class="award-name">Karen Carr English for Academic Purposes Endowed Scholarship</span> <span class="award-org">&middot; North Hennepin Community College.</span></li>
-        <li><span class="award-name">Sharon Johnson Memorial Endowed Scholarship</span> <span class="award-org">&middot; North Hennepin Community College.</span></li>
-      </ul>
+      <div class="ach-grid">
+        <div class="ach-card" onclick="openModal('scholarship-pegues')">
+          <div class="ach-badge">Scholarship</div>
+          <h4>Elizabeth Pegues Matching Scholarship</h4>
+          <p class="ach-meta">Students United &middot; 2026&ndash;2027</p>
+          <p class="ach-desc">Awarded as a match to recognize recipients of competitive Minnesota-based scholarships.</p>
+          <span class="click-hint">View Details &rarr;</span>
+        </div>
+        <div class="ach-card" onclick="openModal('scholarship-apia')">
+          <div class="ach-badge">National Scholarship</div>
+          <h4>APIA / Wells Fargo AANAPISI Scholarship</h4>
+          <p class="ach-meta">APIA Scholars &middot; 2025&ndash;2026</p>
+          <p class="ach-desc">National award recognizing academic achievement and community leadership among AANHPI students at MSIs.</p>
+          <span class="click-hint">View Details &rarr;</span>
+        </div>
+        <div class="ach-card" onclick="openModal('scholarship-kopp')">
+          <div class="ach-badge">Scholarship</div>
+          <h4>Kopp Family Foundation Scholarship</h4>
+          <p class="ach-meta">Metropolitan State University Foundation &middot; 2025&ndash;2026</p>
+          <p class="ach-desc">Merit-based scholarship awarded through the Metropolitan State University Foundation.</p>
+          <span class="click-hint">View Details &rarr;</span>
+        </div>
+        <div class="ach-card" onclick="openModal('scholarship-karr')">
+          <div class="ach-badge">Endowed Scholarship</div>
+          <h4>Karen Carr English for Academic Purposes Endowed Scholarship</h4>
+          <p class="ach-meta">North Hennepin Community College</p>
+          <p class="ach-desc">Endowed scholarship recognizing academic achievement in English for Academic Purposes.</p>
+          <span class="click-hint">View Details &rarr;</span>
+        </div>
+        <div class="ach-card" onclick="openModal('scholarship-johnson')">
+          <div class="ach-badge">Memorial Scholarship</div>
+          <h4>Sharon Johnson Memorial Endowed Scholarship</h4>
+          <p class="ach-meta">North Hennepin Community College</p>
+          <p class="ach-desc">Memorial endowed scholarship awarded to outstanding students at NHCC.</p>
+          <span class="click-hint">View Details &rarr;</span>
+        </div>
+      </div>
 
-      <h4 class="sub-heading">Academic Honors</h4>
-      <ul class="ach-list">
-        <li><span class="award-name">Phi Theta Kappa Honor Society</span> <span class="award-org">&middot; International honor society for two-year colleges.</span></li>
-        <li><span class="award-name">NHCC Scholar (Honors)</span> <span class="award-org">&middot; Honors designation on A.S. Computer Science (Transfer Pathway), North Hennepin Community College, Dec 2024.</span></li>
-        <li><span class="award-name">Dean&rsquo;s List &times; 6 semesters</span> <span class="award-org">&middot; NHCC (Spring 2023, Fall 2023, Spring 2024) &amp; Metropolitan State University (Spring 2025, Fall 2025, Spring 2026).</span></li>
-        <li><span class="award-name">4.00 GPA at Metropolitan State University</span> <span class="award-org">&middot; 3.91 cumulative across all institutions.</span></li>
-      </ul>
+      <h4 class="sub-heading" style="margin-top:2rem;">Academic Honors</h4>
+      <div class="ach-grid">
+        <div class="ach-card" onclick="openModal('honor-ptk')">
+          <div class="ach-badge">Honor Society</div>
+          <h4>Phi Theta Kappa Honor Society</h4>
+          <p class="ach-meta">International Honor Society</p>
+          <p class="ach-desc">International honor society for two-year colleges, recognizing academic excellence.</p>
+          <span class="click-hint">View Details &rarr;</span>
+        </div>
+        <div class="ach-card" onclick="openModal('honor-nhcc')">
+          <div class="ach-badge">Academic</div>
+          <h4>NHCC Scholar (Honors)</h4>
+          <p class="ach-meta">North Hennepin Community College &middot; Dec 2024</p>
+          <p class="ach-desc">Honors designation on A.S. Computer Science (Transfer Pathway).</p>
+          <span class="click-hint">View Details &rarr;</span>
+        </div>
+        <div class="ach-card" onclick="openModal('honor-deans')">
+          <div class="ach-badge">Academic</div>
+          <h4>Dean&rsquo;s List &times; 6 Semesters</h4>
+          <p class="ach-meta">NHCC &amp; Metropolitan State University</p>
+          <p class="ach-desc">NHCC (Spring 2023, Fall 2023, Spring 2024) &amp; Metro State (Spring 2025, Fall 2025, Spring 2026).</p>
+          <span class="click-hint">View Details &rarr;</span>
+        </div>
+        <div class="ach-card" onclick="openModal('honor-gpa40')">
+          <div class="ach-badge">Academic</div>
+          <h4>4.00 GPA at Metropolitan State</h4>
+          <p class="ach-meta">3.91 cumulative across all institutions</p>
+          <p class="ach-desc">Maintained a perfect 4.0 GPA while building 6+ applications and leading Metro Analytics Club.</p>
+          <span class="click-hint">View Details &rarr;</span>
+        </div>
+      </div>
 
-      <h4 class="sub-heading">Competition Wins</h4>
-      <ul class="ach-list">
-        <li><span class="award-name">1st Place &mdash; Minnesota AGENT.AI Competition</span> <span class="award-org">&middot; State Winner.</span></li>
-        <li><span class="award-name">1st Place &mdash; HeatMap Hackathon</span> <span class="award-org">&middot; Perfect 5.0/5.0, 19 teams.</span></li>
-      </ul>
+      <h4 class="sub-heading" style="margin-top:2rem;">Competition Wins</h4>
+      <div class="ach-grid">
+        <div class="ach-card" onclick="openModal('agentai')">
+          <div class="ach-badge">&#127942; 1st Place</div>
+          <h4>Minnesota AGENT.AI Competition</h4>
+          <p class="ach-meta">State Winner</p>
+          <p class="ach-desc">Built a retail-banking fraud detection system. #1 domain score, Top 10 global leaderboard.</p>
+          <span class="click-hint">View Details &rarr;</span>
+        </div>
+        <div class="ach-card" onclick="openModal('heatmap')">
+          <div class="ach-badge">&#127942; 1st Place</div>
+          <h4>HeatMap Hackathon</h4>
+          <p class="ach-meta">19 Teams &middot; Perfect 5.0/5.0</p>
+          <p class="ach-desc">Identified geographic blind spots in burn-care access across Minnesota.</p>
+          <span class="click-hint">View Details &rarr;</span>
+        </div>
+      </div>
     </div>
 
     <!-- PROFESSIONAL CERTIFICATIONS -->
@@ -420,13 +500,11 @@
     <div class="ach-section">
       <h3>&#129309; Mentorship &amp; Leadership Programs</h3>
       <ul class="ach-list">
-        <li><span class="award-name">Metro Analytics Club (President)</span> <span class="award-org">&middot; Metropolitan State University &middot; July 2026 &ndash; Present &middot; Leading club strategy, partnerships, and community programming for a student-run data &amp; analytics organization.</span></li>
-        <li><span class="award-name">Metro Analytics Club (VP)</span> <span class="award-org">&middot; Metropolitan State University &middot; April &ndash; July 2026 &middot; Led session roadmaps, governance, and operational workflows.</span></li>
-        <li><span class="award-name">Data Angels Mentorship Program &mdash; Cohort 5 (Jun&ndash;Dec 2026)</span> <span class="award-org">&middot; Matched with mentor Sravanthi Kondoju for a 6-month mentorship focused on data science career development.</span></li>
-        <li><span class="award-name">TCDSA Innovation Studio &mdash; Nonprofit AI Cohort (Mar&ndash;Jun 2026)</span> <span class="award-org">&middot; Selected for the inaugural Twin Cities Data Science &amp; Analytics build cohort; contributed to a local-model AI coach prototype for nonprofit use.</span></li>
-        <li><span class="award-name">Cargill Mentorship Lab &mdash; Inaugural Cohort (Jan&ndash;Mar 2026)</span> <span class="award-org">&middot; Selected for the first cohort of Cargill&rsquo;s mentorship lab, hosted on-site at Cargill HQ in Wayzata, MN.</span></li>
-        <li><span class="award-name">TRIO Student Support Services Scholar</span> <span class="award-org">&middot; Active participant since Spring 2022 across NHCC and Metropolitan State University; selected for demonstrated motivation, leadership potential, and academic commitment.</span></li>
-        <li><span class="award-name">Be Bold, Break the Mold Mentorship Program</span> <span class="award-org">&middot; Supporting women entering high-demand fields including computer science, engineering, construction management, and criminal justice.</span></li>
+        <li><span class="award-name">Metro Analytics Club</span> <span class="award-org">&mdash; President &amp; Former VP &middot; Metropolitan State University (Apr 2026 &ndash; Present) &middot; Leading organizational strategy, community programming, governance, and partnerships.</span></li>
+        <li><span class="award-name">Data Angels Mentorship Program</span> <span class="award-org">&mdash; Cohort 5 (Jun &ndash; Dec 2026) &middot; Matched with mentor Sravanthi Kondoju for 1-on-1 data science career development and technical guidance.</span></li>
+        <li><span class="award-name">TCDSA Innovation Studio</span> <span class="award-org">&mdash; Nonprofit AI Cohort (Mar &ndash; Jun 2026) &middot; Contributed to a local-model AI coach prototype for nonprofit use in the inaugural build cohort.</span></li>
+        <li><span class="award-name">Cargill Mentorship Lab</span> <span class="award-org">&mdash; Inaugural Cohort (Jan &ndash; Mar 2026) &middot; Selected for the first mentorship cohort hosted on-site at Cargill HQ in Wayzata, MN.</span></li>
+        <li><span class="award-name">Be Bold, Break the Mold Mentorship Program</span> <span class="award-org">&mdash; Mentee (2023 &ndash; Present) &middot; Supporting women entering high-demand fields across computer science, engineering, construction management, and criminal justice.</span></li>
       </ul>
     </div>
 
@@ -671,6 +749,170 @@
   </div>
 
   <!-- ═══ MODAL JAVASCRIPT ═══ -->
+
+  <!-- Scholarship Modals -->
+  <div class="modal-overlay" id="modal-scholarship-pegues" onclick="closeOnOverlay(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('scholarship-pegues')">&#10005;</button>
+      <div class="modal-header">
+        <div class="badge">Scholarship</div>
+        <h2>Elizabeth Pegues Matching Scholarship</h2>
+        <p>Students United &middot; 2026&ndash;2027</p>
+      </div>
+      <div class="modal-body">
+        <p class="modal-detail">Awarded as a match to recognize recipients of institutional and external scholarships. This matching scholarship from Students United amplifies the value of other scholarship awards.</p>
+        <div class="modal-stats">
+          <div class="modal-stat"><div class="num">Match</div><div class="lbl">Award Type</div></div>
+          <div class="modal-stat"><div class="num">2026&ndash;27</div><div class="lbl">Period</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-scholarship-apia" onclick="closeOnOverlay(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('scholarship-apia')">&#10005;</button>
+      <div class="modal-header">
+        <div class="badge">National Scholarship</div>
+        <h2>APIA / Wells Fargo Foundation AANAPISI Scholarship</h2>
+        <p>APIA Scholars &middot; 2025&ndash;2026</p>
+      </div>
+      <div class="modal-body">
+        <p class="modal-detail">Multi-year national award recognizing academic excellence and community impact among Asian American, Native Hawaiian, and Pacific Islander (AANHPI) students at Minority Serving Institutions (MSIs).</p>
+        <div class="modal-stats">
+          <div class="modal-stat"><div class="num">National</div><div class="lbl">Scope</div></div>
+          <div class="modal-stat"><div class="num">Competitive</div><div class="lbl">Selection</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-scholarship-kopp" onclick="closeOnOverlay(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('scholarship-kopp')">&#10005;</button>
+      <div class="modal-header">
+        <div class="badge">Scholarship</div>
+        <h2>Kopp Family Foundation Scholarship</h2>
+        <p>Metropolitan State University Foundation &middot; 2025&ndash;2026</p>
+      </div>
+      <div class="modal-body">
+        <p class="modal-detail">Merit-based scholarship awarded through the Metropolitan State University Foundation, supporting students with demonstrated academic achievement.</p>
+        <div class="modal-stats">
+          <div class="modal-stat"><div class="num">Merit</div><div class="lbl">Award Type</div></div>
+          <div class="modal-stat"><div class="num">2025&ndash;26</div><div class="lbl">Period</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-scholarship-karr" onclick="closeOnOverlay(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('scholarship-karr')">&#10005;</button>
+      <div class="modal-header">
+        <div class="badge">Endowed Scholarship</div>
+        <h2>Karen Carr English for Academic Purposes Endowed Scholarship</h2>
+        <p>North Hennepin Community College</p>
+      </div>
+      <div class="modal-body">
+        <p class="modal-detail">Endowed scholarship recognizing academic achievement in English for Academic Purposes at North Hennepin Community College.</p>
+        <div class="modal-stats">
+          <div class="modal-stat"><div class="num">Endowed</div><div class="lbl">Award Type</div></div>
+          <div class="modal-stat"><div class="num">NHCC</div><div class="lbl">Institution</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-scholarship-johnson" onclick="closeOnOverlay(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('scholarship-johnson')">&#10005;</button>
+      <div class="modal-header">
+        <div class="badge">Memorial Scholarship</div>
+        <h2>Sharon Johnson Memorial Endowed Scholarship</h2>
+        <p>North Hennepin Community College</p>
+      </div>
+      <div class="modal-body">
+        <p class="modal-detail">Memorial endowed scholarship awarded to outstanding students at North Hennepin Community College.</p>
+        <div class="modal-stats">
+          <div class="modal-stat"><div class="num">Memorial</div><div class="lbl">Award Type</div></div>
+          <div class="modal-stat"><div class="num">NHCC</div><div class="lbl">Institution</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Academic Honor Modals -->
+  <div class="modal-overlay" id="modal-honor-ptk" onclick="closeOnOverlay(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('honor-ptk')">&#10005;</button>
+      <div class="modal-header">
+        <div class="badge">Honor Society</div>
+        <h2>Phi Theta Kappa Honor Society</h2>
+        <p>International Honor Society for Two-Year Colleges</p>
+      </div>
+      <div class="modal-body">
+        <p class="modal-detail">Phi Theta Kappa is the premier honor society recognizing academic achievement of students at associate degree-granting colleges. Membership requires a minimum 3.5 GPA and is recognized by over 800 institutions worldwide.</p>
+        <div class="modal-stats">
+          <div class="modal-stat"><div class="num">3.5+</div><div class="lbl">Min GPA</div></div>
+          <div class="modal-stat"><div class="num">800+</div><div class="lbl">Institutions</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-honor-nhcc" onclick="closeOnOverlay(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('honor-nhcc')">&#10005;</button>
+      <div class="modal-header">
+        <div class="badge">Academic Honors</div>
+        <h2>NHCC Scholar (Honors)</h2>
+        <p>North Hennepin Community College &middot; December 2024</p>
+      </div>
+      <div class="modal-body">
+        <p class="modal-detail">Honors designation on the A.S. Computer Science (Transfer Pathway) degree, recognizing sustained academic excellence throughout the program.</p>
+        <div class="modal-stats">
+          <div class="modal-stat"><div class="num">3.93</div><div class="lbl">GPA</div></div>
+          <div class="modal-stat"><div class="num">Honors</div><div class="lbl">Designation</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-honor-deans" onclick="closeOnOverlay(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('honor-deans')">&#10005;</button>
+      <div class="modal-header">
+        <div class="badge">Academic</div>
+        <h2>Dean&rsquo;s List &times; 6 Semesters</h2>
+        <p>NHCC &amp; Metropolitan State University</p>
+      </div>
+      <div class="modal-body">
+        <p class="modal-detail">Consecutive Dean&rsquo;s List recognition across two institutions: North Hennepin Community College (Spring 2023, Fall 2023, Spring 2024) and Metropolitan State University (Spring 2025, Fall 2025, Spring 2026).</p>
+        <div class="modal-stats">
+          <div class="modal-stat"><div class="num">6</div><div class="lbl">Semesters</div></div>
+          <div class="modal-stat"><div class="num">2</div><div class="lbl">Institutions</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="modal-honor-gpa40" onclick="closeOnOverlay(event)">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('honor-gpa40')">&#10005;</button>
+      <div class="modal-header">
+        <div class="badge">Academic</div>
+        <h2>4.00 GPA at Metropolitan State University</h2>
+        <p>3.91 Cumulative Across All Institutions</p>
+      </div>
+      <div class="modal-body">
+        <p class="modal-detail">Maintained a perfect 4.0 GPA at Metropolitan State University while simultaneously building 6+ shipped applications, winning two competitions, and serving as President of Metro Analytics Club.</p>
+        <div class="modal-stats">
+          <div class="modal-stat"><div class="num">4.00</div><div class="lbl">Metro State GPA</div></div>
+          <div class="modal-stat"><div class="num">3.91</div><div class="lbl">Cumulative GPA</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
   <script>
     function openModal(id) {
       document.getElementById('modal-' + id).classList.add('open');
@@ -698,7 +940,13 @@
 
   <footer class="site-footer">
     <span class="brand">Feifei Li</span>
-    <span class="tag-line">Data Science · Community Impact · Minneapolis, MN</span>
+    <div class="footer-links">
+      <a href="https://github.com/fayfayMN" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/feifeili-ds" target="_blank">LinkedIn</a>
+      <a href="contact.html">Contact</a>
+      <a href="life.html">Life &amp; Craft</a>
+    </div>
+    <span class="tag-line">Data Science &middot; Community Impact &middot; Minneapolis, MN</span>
   </footer>
 
   <script src="site.js"></script>

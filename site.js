@@ -1,3 +1,53 @@
+/* ═══ Hamburger Menu ═══ */
+(function () {
+  var btn = document.querySelector('.hamburger');
+  var nav = document.querySelector('.nav-links');
+  if (btn && nav) {
+    btn.addEventListener('click', function () {
+      nav.classList.toggle('open');
+    });
+    document.addEventListener('click', function (e) {
+      if (!btn.contains(e.target) && !nav.contains(e.target)) {
+        nav.classList.remove('open');
+      }
+    });
+  }
+})();
+
+/* ═══ Project Filter ═══ */
+(function () {
+  var pills = document.querySelectorAll('.filter-pill');
+  var items = document.querySelectorAll('.project-item');
+  if (!pills.length || !items.length) return;
+
+  pills.forEach(function (pill) {
+    pill.addEventListener('click', function () {
+      pills.forEach(function (p) { p.classList.remove('active'); });
+      pill.classList.add('active');
+      var filter = pill.getAttribute('data-filter');
+
+      items.forEach(function (item) {
+        if (filter === 'all') {
+          item.style.display = '';
+          return;
+        }
+        var tags = (item.getAttribute('data-tags') || '').split(/\s+/);
+        item.style.display = tags.indexOf(filter) !== -1 ? '' : 'none';
+      });
+
+      document.querySelectorAll('.section-head-group').forEach(function (heading) {
+        if (filter === 'all') { heading.style.display = ''; return; }
+        var next = heading.nextElementSibling;
+        if (!next) return;
+        var visible = next.querySelectorAll('.project-item');
+        var anyVisible = false;
+        visible.forEach(function (v) { if (v.style.display !== 'none') anyVisible = true; });
+        heading.style.display = anyVisible ? '' : 'none';
+      });
+    });
+  });
+})();
+
 /* ═══ Lightbox — click any .photo-frame img to view full size ═══ */
 (function () {
   var overlay = document.createElement('div');
@@ -45,8 +95,10 @@
       });
     }
 
-    ss.querySelector('.ss-prev').addEventListener('click', function () { show(idx - 1); });
-    ss.querySelector('.ss-next').addEventListener('click', function () { show(idx + 1); });
+    var prev = ss.querySelector('.ss-prev');
+    var next = ss.querySelector('.ss-next');
+    if (prev) prev.addEventListener('click', function () { show(idx - 1); });
+    if (next) next.addEventListener('click', function () { show(idx + 1); });
     dots.forEach(function (d, i) {
       d.addEventListener('click', function () { show(i); });
     });
