@@ -5,7 +5,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Karla:wght@400;600;700&display=swap');
 
-:root { --content-max: 1440px; }
+:root { --content-max: 1600px; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
