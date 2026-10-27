@@ -378,6 +378,15 @@
         <span class="view-details">Click for Full Scope &rarr;</span>
       </div>
 
+      <div class="exp-card clickable" onclick="openExpModal('minnemudac2026')">
+        <div class="exp-badge">Competition</div>
+        <div class="exp-role">MinneMUDAC Graduate Analytics Challenge</div>
+        <div class="exp-org">The Food Group &middot; Graduate Division</div>
+        <div class="exp-date">Sep &ndash; Oct 2026</div>
+        <div class="exp-desc">Undergraduate competing in Graduate Division. Ranked #6 in prediction accuracy; joined 8 datasets across 87 counties and 55 months; finding requested by The Food Group for operational siting strategy.</div>
+        <span class="view-details">Click for Full Scope &rarr;</span>
+      </div>
+
       <div class="exp-card clickable" onclick="openExpModal('datasci')">
         <div class="exp-badge">Applied AI &amp; Analytics</div>
         <div class="exp-role">Data Scientist &amp; AI Developer</div>
@@ -671,6 +680,47 @@
             <div class="num">99.9%</div>
             <div class="lbl">Accuracy</div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-modal-overlay" id="exp-modal-minnemudac2026" onclick="if(event.target===this)closeExpModal()">
+    <div class="exp-modal">
+      <button class="exp-modal-close" onclick="closeExpModal()">&#10005;</button>
+      <div class="exp-modal-header">
+        <div class="badge">Competition</div>
+        <h2>MinneMUDAC Graduate Analytics Challenge</h2>
+        <p>The Food Group &middot; Sep &ndash; Oct 2026</p>
+      </div>
+      <div class="exp-modal-body">
+        <p class="exp-modal-detail">Competed in the Graduate Division as an undergraduate, architecting an end-to-end Python pipeline joining 8 operational and public datasets (Census ACS, USDA Food Access Atlas, BLS, SNAP) across 87 Minnesota counties and 55 months.</p>
+        <p class="exp-modal-detail">Ranked <strong>#6 in Graduate Division Prediction Accuracy</strong> out of all teams; evaluated 8 candidate models via walk-forward backtesting and applied damped smoothing to out-forecast complex SARIMA architectures.</p>
+        <p class="exp-modal-detail">Uncovered and corrected a spatial confounder using a stratified Fisher&rsquo;s exact test (p&nbsp;=&nbsp;0.76); proved food shelves track neighborhood poverty rather than grocery deserts, prompting The Food Group to request the team&rsquo;s slide deck for operational siting strategy.</p>
+        <p class="exp-modal-detail">Quantified SNAP benefit-cliff policy shocks using an interrupted time series with Newey&ndash;West HAC robust standard errors (+22% visits, p&nbsp;&lt;&nbsp;0.001), bounding causal claims with an empirical dose-response validation.</p>
+        <div class="exp-modal-stats">
+          <div class="exp-modal-stat">
+            <div class="num">#6</div>
+            <div class="lbl">Grad Division Rank</div>
+          </div>
+          <div class="exp-modal-stat">
+            <div class="num">8</div>
+            <div class="lbl">Datasets Joined</div>
+          </div>
+          <div class="exp-modal-stat">
+            <div class="num">87</div>
+            <div class="lbl">MN Counties</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:1rem;">
+          <span style="background:#f5f5f5; color:#444; font-size:12px; font-weight:600; padding:4px 14px; border-radius:20px;">Python</span>
+          <span style="background:#f5f5f5; color:#444; font-size:12px; font-weight:600; padding:4px 14px; border-radius:20px;">Pandas</span>
+          <span style="background:#f5f5f5; color:#444; font-size:12px; font-weight:600; padding:4px 14px; border-radius:20px;">Statsmodels</span>
+          <span style="background:#f5f5f5; color:#444; font-size:12px; font-weight:600; padding:4px 14px; border-radius:20px;">Scikit-Learn</span>
+          <span style="background:#f5f5f5; color:#444; font-size:12px; font-weight:600; padding:4px 14px; border-radius:20px;">GeoPandas</span>
+          <span style="background:#f5f5f5; color:#444; font-size:12px; font-weight:600; padding:4px 14px; border-radius:20px;">Walk-Forward Validation</span>
+          <span style="background:#f5f5f5; color:#444; font-size:12px; font-weight:600; padding:4px 14px; border-radius:20px;">Fisher&rsquo;s Exact Test</span>
+          <span style="background:#f5f5f5; color:#444; font-size:12px; font-weight:600; padding:4px 14px; border-radius:20px;">Interrupted Time Series</span>
         </div>
       </div>
     </div>
