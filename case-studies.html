@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Case Studies &mdash; Feifei Li</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .cs-hero {
+      max-width: var(--content-max);
+      margin: 0 auto;
+      padding: clamp(3rem, 5vw, 5rem) clamp(2rem, 5vw, 6rem) 1rem;
+    }
+
+    .cs-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3vw, 3rem);
+      color: #1a1a1a;
+      margin: 0.4rem 0 0.5rem;
+    }
+
+    .cs-hero p {
+      color: #666;
+      max-width: 760px;
+      font-size: clamp(15px, 1.1vw, 18px);
+      line-height: 1.75;
+    }
+
+    .cs-wrap {
+      max-width: var(--content-max);
+      margin: 0 auto;
+      padding: clamp(1.5rem, 3vw, 2.5rem) clamp(2rem, 5vw, 6rem) 2rem;
+    }
+
+    .case {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 18px;
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      margin-bottom: clamp(2rem, 4vw, 3.5rem);
+      scroll-margin-top: 90px;
+    }
+
+    .case-top {
+      padding: clamp(1.5rem, 3vw, 2.5rem);
+      color: #fff;
+    }
+
+    .case-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+    }
+
+    .case-top h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 2.2vw, 2.2rem);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+
+    .case-top .one-liner {
+      font-size: clamp(14px, 1.1vw, 17px);
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 760px;
+      line-height: 1.6;
+    }
+
+    .case-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(255, 255, 255, 0.18);
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .case-stat {
+      background: transparent;
+      padding: 1rem clamp(0.75rem, 1.5vw, 1.5rem);
+    }
+
+    .case-stat .num {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 2vw, 1.9rem);
+      font-weight: 700;
+    }
+
+    .case-stat .lbl {
+      font-size: clamp(10px, 0.8vw, 12px);
+      color: rgba(255, 255, 255, 0.8);
+      letter-spacing: 0.04em;
+      margin-top: 2px;
+    }
+
+    .case-body {
+      padding: clamp(1.5rem, 3vw, 2.75rem);
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 0;
+    }
+
+    .cs-block {
+      display: contents;
+    }
+
+    .cs-label {
+      font-family: 'Karla', sans-serif;
+      font-size: clamp(11px, 0.9vw, 13px);
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #C8501A;
+      padding: 1.1rem 1.5rem 1.1rem 0;
+    }
+
+    .cs-content {
+      padding: 1.1rem 0;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: clamp(14px, 1vw, 16px);
+      color: #444;
+      line-height: 1.75;
+    }
+
+    .cs-content:last-child {
+      border-bottom: none;
+    }
+
+    .cs-content p {
+      margin-bottom: 0.75rem;
+    }
+
+    .cs-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    .cs-content strong {
+      color: #1a1a1a;
+    }
+
+    .cs-content .accent {
+      color: #C8501A;
+      font-weight: 700;
+    }
+
+    .cs-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .cs-tags span {
+      background: #f5f5f5;
+      color: #444;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 13px;
+      border-radius: 20px;
+    }
+
+    .cs-note {
+      font-size: 13px;
+      color: #888;
+      font-style: italic;
+      margin-top: 0.5rem;
+    }
+
+    .cs-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    .cs-links a {
+      border: 1.5px solid #C8501A;
+      color: #C8501A;
+      padding: 8px 16px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+    }
+
+    .cs-links a:hover {
+      background: #FFF3ED;
+    }
+
+    @media (max-width: 760px) {
+      .case-body {
+        grid-template-columns: 1fr;
+      }
+
+      .cs-label {
+        padding: 1.1rem 0 0.25rem;
+        border-top: 1px solid #f0f0f0;
+      }
+
+      .cs-content {
+        padding: 0 0 1.1rem;
+        border-bottom: none;
+      }
+
+      .case-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-brand">Feifei Li <em>(say: Fayfay)</em></a>
+      <button class="hamburger" aria-label="Toggle menu">&#9776;</button>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="case-studies.html" class="active">Case Studies</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="Feifei-Li-Resume.pdf" target="_blank" rel="noopener">Resume</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <div class="cs-hero">
+    <div class="section-label">CASE STUDIES</div>
+    <h1>How I think through a problem</h1>
+    <p>
+      Two deep dives into the work I'm proudest of &mdash; not just what I built, but the
+      decisions, the dead ends, and the moment a result almost went out wrong before I caught it.
+      Each follows the same arc: the problem, the data, my approach, the result, and what I'd do next.
+    </p>
+  </div>
+
+  <div class="cs-wrap">
+
+    <!-- ═══════════════ CASE STUDY 1 — MINNEMUDAC ═══════════════ -->
+    <article class="case" id="minnemudac">
+      <div class="case-top" style="background:linear-gradient(135deg,#2c3e50,#4a6f8a);">
+        <span class="case-badge">Graduate Analytics Challenge &middot; The Food Group</span>
+        <h2>The finding that almost went out wrong</h2>
+        <p class="one-liner">
+          Forecasting food-shelf demand for a Minnesota hunger-relief network &mdash; and catching a
+          confounder that reversed the headline conclusion before it reached the client.
+        </p>
+      </div>
+      <div class="case-stats">
+        <div class="case-stat">
+          <div class="num">#6</div>
+          <div class="lbl">Graduate Division (as an undergrad)</div>
+        </div>
+        <div class="case-stat">
+          <div class="num">8</div>
+          <div class="lbl">Datasets joined</div>
+        </div>
+        <div class="case-stat">
+          <div class="num">87 &times; 55</div>
+          <div class="lbl">Counties &times; months</div>
+        </div>
+        <div class="case-stat">
+          <div class="num">~33%</div>
+          <div class="lbl">Error cut vs. baseline</div>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="cs-block">
+          <div class="cs-label">The problem</div>
+          <div class="cs-content">
+            <p>The Food Group, a Minnesota hunger-relief network, needed two things: a <strong>demand
+            forecast</strong> to plan distribution, and an honest read on <strong>where need goes
+            unmet</strong> to guide where they site and route food. I entered the MinneMUDAC
+            <strong>Graduate Division as an undergraduate</strong>.</p>
+          </div>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">The data</div>
+          <div class="cs-content">
+            <p>I built an end-to-end Python pipeline joining <strong>8 operational and public
+            datasets</strong> &mdash; Census ACS, the USDA Food Access Research Atlas, BLS, and SNAP
+            administrative records among them &mdash; aligned across <strong>87 Minnesota counties
+            and 55 months</strong>. Most of the work was reconciling mismatched geographies and
+            time grains so the joins actually meant something.</p>
+          </div>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">My approach</div>
+          <div class="cs-content">
+            <p><strong>Forecasting.</strong> I evaluated <strong>8 candidate models</strong> with
+            walk-forward backtesting. A damped-trend exponential smoothing model out-forecast more
+            complex SARIMA architectures and cut error <span class="accent">~33% below a persistence
+            baseline</span> &mdash; simpler, and more robust out of sample.</p>
+            <p><strong>The confounder.</strong> The headline hypothesis was that the food-shelf
+            network fills grocery &ldquo;deserts.&rdquo; A first cut said yes. But that comparison
+            lumped in wealthy suburbs that would never host a shelf &mdash; so the gap might be
+            <em>income</em>, not access. I stratified by neighborhood income and re-ran a Fisher's
+            exact test: the advantage <span class="accent">vanished (p&nbsp;=&nbsp;0.76)</span>. The
+            network tracks neighborhood poverty, not distance to a grocery store.</p>
+            <p><strong>Policy shock.</strong> I quantified the SNAP benefit-cliff with an interrupted
+            time series using Newey&ndash;West HAC robust standard errors (<strong>+22% visits,
+            p&nbsp;&lt;&nbsp;0.001</strong>), and reported a <strong>null dose-response
+            (&rho;&nbsp;=&nbsp;+0.03)</strong> that bounded the causal claim instead of overstating it.</p>
+          </div>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">The result</div>
+          <div class="cs-content">
+            <p>Ranked <strong>#6 in Graduate Division prediction accuracy</strong>. More importantly,
+            the confounder check turned a flashy-but-false headline into a defensible siting insight:
+            coverage follows poverty, not access, so filling true access gaps needs a deliberate
+            siting and mobile-distribution decision &mdash; it won't happen on its own.</p>
+          </div>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">What I'd do next</div>
+          <div class="cs-content">
+            <p>A food shelf's address is where food is <em>handed out</em>, not where its clients
+            live &mdash; the real limit of the analysis. Next I'd start collecting client home ZIP to
+            measure access properly, and test the ~29 unserved low-access tracts for mobile-route
+            feasibility.</p>
+          </div>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">Why it matters</div>
+          <div class="cs-content">
+            <p>The best result here came from <strong>almost being wrong</strong>. A confounder I
+            could have shipped would have sent the client in the wrong direction; the stratified
+            re-test caught it. That &mdash; checking your own work before it becomes someone's
+            decision &mdash; is the habit I'd bring to a team.</p>
+            <div class="cs-tags" style="margin-top:0.75rem;">
+              <span>Python</span><span>Pandas</span><span>Statsmodels</span><span>GeoPandas</span>
+              <span>Walk-Forward Validation</span><span>Fisher's Exact Test</span>
+              <span>Interrupted Time Series</span><span>SARIMA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ═══════════════ CASE STUDY 2 — SPS CAPSTONE ═══════════════ -->
+    <article class="case" id="capstone">
+      <div class="case-top" style="background:linear-gradient(135deg,#0F6E56,#1a9e7a);">
+        <span class="case-badge">Industry Capstone &middot; SPS Commerce &times; Metropolitan State</span>
+        <h2>Finding the next sales call in millions of barcodes</h2>
+        <p class="one-liner">
+          Turning raw UPC transaction data into a ranked list of which supplier customers to follow
+          up with &mdash; by finding where they already sell to retailers they aren't yet connected to.
+        </p>
+      </div>
+      <div class="case-stats">
+        <div class="case-stat">
+          <div class="num">Millions</div>
+          <div class="lbl">UPC item records</div>
+        </div>
+        <div class="case-stat">
+          <div class="num">5-step</div>
+          <div class="lbl">Reproducible pipeline</div>
+        </div>
+        <div class="case-stat">
+          <div class="num">12-digit</div>
+          <div class="lbl">UPCs preserved (leading zeros)</div>
+        </div>
+        <div class="case-stat">
+          <div class="num">1</div>
+          <div class="lbl">Ranked target list delivered</div>
+        </div>
+      </div>
+      <div class="case-body">
+        <div class="cs-block">
+          <div class="cs-label">The problem</div>
+          <div class="cs-content">
+            <p>SPS Commerce runs the largest retail business network in the industry, connecting
+            suppliers and retailers through EDI. The business question: <strong>which supplier
+            customers should the team follow up with first?</strong> The signal we went after &mdash;
+            a supplier already selling a product at retailers they are <em>not yet connected to</em>
+            through SPS. That connection gap is a concrete growth opportunity.</p>
+          </div>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">The data</div>
+          <div class="cs-content">
+            <p>Item-level UPC transaction records (daily files, <strong>millions of rows</strong>)
+            joined to customer details through an organization-ID key. The quiet trap:
+            <strong>UPCs are 12-digit codes with leading zeros</strong> and the org IDs are enormous
+            integers &mdash; read either as a number and the data silently corrupts. Everything had to
+            be read as strings, and the cleaned outputs never opened in Excel, which would reformat
+            the IDs on contact.</p>
+          </div>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">My approach</div>
+          <div class="cs-content">
+            <p><strong>ETL.</strong> Unzip and combine the raw daily files, keep only valid 12-digit
+            UPCs, clean and de-duplicate the item records.</p>
+            <p><strong>Join + EDA.</strong> Attach customer attributes &mdash; industry, revenue band,
+            tenure, existing SPS connection count &mdash; to each item via the seller organization ID.</p>
+            <p><strong>Enrichment.</strong> An external API lookup to find which retailers actually
+            carry each barcode in the market.</p>
+            <p><strong>Gap analysis + prioritization.</strong> Compare &ldquo;retailers who sell this
+            supplier's products&rdquo; against &ldquo;retailers they're connected to via SPS.&rdquo;
+            The difference is the opportunity. I ranked customers by that gap and built an ML-assisted
+            prioritizer to spend the limited API budget on the highest-value targets first, delivering
+            a <strong>ranked sales-target list</strong> in Excel / Power BI.</p>
+          </div>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">The result</div>
+          <div class="cs-content">
+            <p>A <strong>reproducible pipeline</strong> &mdash; ordered notebooks plus standalone
+            scripts for unattended runs &mdash; that takes raw barcode data and hands the business team
+            a prioritized follow-up list instead of a spreadsheet dump. Each step writes the file the
+            next one reads, so the whole thing reruns on fresh data.</p>
+          </div>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">What I'd do next</div>
+          <div class="cs-content">
+            <p>Scale the API enrichment with caching and rate-limit handling, add fuzzy product
+            matching for barcodes the lookup misses, and automate a refresh so the target list
+            regenerates as new transaction data lands.</p>
+          </div>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">What I learned</div>
+          <div class="cs-content">
+            <p>Two things. First, <strong>data-type discipline at the boundary</strong> &mdash;
+            leading zeros, oversized IDs &mdash; is the difference between a correct pipeline and
+            silent, invisible data loss. Second, an analysis is only worth anything if it maps to a
+            decision the business actually makes: here, <em>who to call next</em>.</p>
+            <div class="cs-tags" style="margin-top:0.75rem;">
+              <span>Python</span><span>Pandas</span><span>R</span><span>ETL</span>
+              <span>External API</span><span>Power BI</span><span>Data Quality</span>
+            </div>
+            <p class="cs-note">Industry partnership &mdash; methodology and my role shown; proprietary
+            customer data withheld.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="site-footer">
+    <span class="brand">Feifei Li</span>
+    <div class="footer-links">
+      <a href="https://github.com/fayfayMN" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/feifeili-ds" target="_blank">LinkedIn</a>
+      <a href="contact.html">Contact</a>
+      <a href="life.html">Life &amp; Craft</a>
+    </div>
+    <span class="tag-line">Data Science &middot; Community Impact &middot; Minneapolis, MN</span>
+  </footer>
+
+  <script src="site.js"></script>
+</body>
+
+</html>
