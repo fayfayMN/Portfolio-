@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MIS 480 — Retail Sales Prediction (CRISP-DM) · Feifei Li</title>
+  <link rel="stylesheet" href="../styles.css">
+  <style>
+    .mis-wrap { max-width: 980px; margin: 0 auto; padding: clamp(2rem, 5vw, 4rem) clamp(1.25rem, 5vw, 3rem); }
+    .mis-wrap h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); color: #1a1a1a; margin-bottom: 0.4rem; }
+    .mis-meta { color: #888; font-size: clamp(13px, 1vw, 15px); margin-bottom: 1.5rem; line-height: 1.7; }
+    .mis-meta strong { color: #34495e; }
+    .mis-lead { font-size: clamp(15px, 1.1vw, 18px); color: #444; line-height: 1.8; margin-bottom: 2rem; }
+    .nb-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; margin: 1.5rem 0 2.5rem; }
+    .nb-card { display: block; text-decoration: none; color: inherit; background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 1.25rem; box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: transform .15s, box-shadow .15s; }
+    .nb-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+    .nb-num { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: #34495e; font-weight: 700; }
+    .nb-card h3 { font-size: clamp(14px, 1vw, 16px); color: #1a1a1a; margin: 4px 0 6px; }
+    .nb-card p { font-size: clamp(12px, 0.9vw, 14px); color: #777; line-height: 1.6; }
+    .phase { border-left: 3px solid #C8501A; padding-left: 1.1rem; margin-bottom: 1.1rem; }
+    .phase h4 { font-family: 'Playfair Display', serif; color: #C8501A; font-size: clamp(0.95rem, 1vw, 1.1rem); margin-bottom: 0.3rem; }
+    .phase p { font-size: clamp(13px, 1vw, 15px); color: #555; line-height: 1.7; }
+    .mis-note { font-size: 13px; color: #888; font-style: italic; border-top: 1px solid #eee; padding-top: 1.25rem; margin-top: 2rem; }
+    .back-link { display: inline-block; margin-bottom: 1.5rem; color: #C8501A; text-decoration: none; font-weight: 700; font-size: 14px; }
+  </style>
+</head>
+
+<body>
+  <div class="mis-wrap">
+    <a class="back-link" href="../projects.html">&larr; Back to Projects</a>
+    <div class="section-label">MIS 480 · PREDICTIVE ANALYTICS</div>
+    <h1>Retail Sales Patterns &amp; Prediction</h1>
+    <div class="mis-meta">
+      <strong>Course:</strong> MIS 480-50 Predictive Analytics &middot; Dr. Aindrila Chakraborty &middot; Fall 2026 &nbsp;|&nbsp;
+      <strong>Team:</strong> Paul Ries, Feifei Li, Sem Masgina, Derrick Nyagesuka &nbsp;|&nbsp;
+      <strong>Data:</strong> FreshRetailNet-50K (4.5M rows, ~50K store-product series)
+    </div>
+    <p class="mis-lead">
+      A full <strong>CRISP-DM</strong> study: can promotional, calendar, weather, and stockout information known
+      <em>in advance</em> improve next-day retail sales prediction beyond past sales alone? Findings are framed as
+      associations and predictive contributions &mdash; not proof of causation.
+    </p>
+
+    <h2 style="font-family:'Playfair Display',serif; font-size:1.3rem; color:#1a1a1a; margin-bottom:1rem;">The Analysis &mdash; 5 Notebooks</h2>
+    <div class="nb-grid">
+      <a class="nb-card" href="01_inspect.html"><div class="nb-num">01</div><h3>Inspect &mdash; Data Understanding</h3><p>Dataset structure, levels of measurement, quality checks (0 missing, complete 90/90-day series).</p></a>
+      <a class="nb-card" href="02_subset.html"><div class="nb-num">02</div><h3>Subset &mdash; Data Preparation</h3><p>100 complete series / 9,000 rows; engineered availability &amp; est_demand proxy for stockout-censored demand.</p></a>
+      <a class="nb-card" href="03_eda.html"><div class="nb-num">03</div><h3>EDA &mdash; Exploration</h3><p>Promotion/holiday lift, stockout censoring, weak weather signal, weekly seasonality, feature screen (VIF &lt; 3).</p></a>
+      <a class="nb-card" href="04_modeling.html"><div class="nb-num">04</div><h3>Modeling &amp; Evaluation</h3><p>Next-day forecasts with no leakage; regression trees + linear regression; 95% prediction intervals; scored on the true future.</p></a>
+      <a class="nb-card" href="05_classification.html"><div class="nb-num">05</div><h3>Classification</h3><p>Secondary &ldquo;high-sales day?&rdquo; framing; logistic + random forest; ROC-AUC &asymp; 0.87 vs. baseline.</p></a>
+      <a class="nb-card" href="MIS480_Proposal.pdf" target="_blank" rel="noopener"><div class="nb-num">&#128196;</div><h3>Project Proposal (PDF)</h3><p>The original scoped proposal and research questions.</p></a>
+    </div>
+
+    <h2 style="font-family:'Playfair Display',serif; font-size:1.3rem; color:#1a1a1a; margin-bottom:1rem;">What the data said</h2>
+    <div class="phase"><h4>The censoring trap</h4><p>As stockout hours rise, observed sales <em>fall</em> (1.14 &rarr; 0.46) but stockout-adjusted demand <em>rises</em> (1.14 &rarr; 4.72) &mdash; most of the decline is censoring, not lost demand. We built a transparent est_demand proxy and flagged it as an MNAR (non-ignorable) pattern.</p></div>
+    <div class="phase"><h4>What actually moves sales</h4><p>Discount (r &asymp; &minus;0.21) and holidays (r &asymp; +0.17) matter most; weekends run ~50% above weekdays; weather is near zero. All VIF &lt; 3 &mdash; no multicollinearity.</p></div>
+    <div class="phase"><h4>The verdict</h4><p>Scored once on the dataset's official future split, every model beats the naive baseline &mdash; advance information gives a modest but real lift over past sales alone. The simple linear model held up best on RMSE; the forest's within-sample edge did not carry into the true future.</p></div>
+
+    <p class="mis-note">
+      Limitations stated up front: we predict observed sales, not full unmet demand; a 90-day window can't establish
+      annual seasonality; the 100-series convenience sample limits generalization to the full chain. My work spans
+      notebooks 01&ndash;05.
+    </p>
+  </div>
+</body>
+
+</html>
