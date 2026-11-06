@@ -349,101 +349,113 @@
     </article>
 
     <!-- ═══════════════ CASE STUDY 2 — SPS CAPSTONE ═══════════════ -->
-    <article class="case" id="capstone">
-      <div class="case-top" style="background:linear-gradient(135deg,#0F6E56,#1a9e7a);">
-        <span class="case-badge">Industry Capstone &middot; SPS Commerce &times; Metropolitan State</span>
-        <h2>Finding the next sales call in millions of barcodes</h2>
+    <article class="case" id="mis480">
+      <div class="case-top" style="background:linear-gradient(135deg,#34495e,#5d7a99);">
+        <span class="case-badge">MIS 480 Predictive Analytics &middot; Metropolitan State</span>
+        <h2>Does knowing tomorrow's promotions help you predict tomorrow's sales?</h2>
         <p class="one-liner">
-          Turning raw UPC transaction data into a ranked list of which supplier customers to follow
-          up with &mdash; by finding where they already sell to retailers they aren't yet connected to.
+          A full CRISP-DM study on 4.5M rows of retail data &mdash; and an honest answer to whether
+          information available <em>in advance</em> beats simply using past sales.
         </p>
       </div>
       <div class="case-stats">
         <div class="case-stat">
-          <div class="num">Millions</div>
-          <div class="lbl">UPC item records</div>
+          <div class="num">4.5M</div>
+          <div class="lbl">Rows (FreshRetailNet-50K)</div>
         </div>
         <div class="case-stat">
-          <div class="num">5-step</div>
-          <div class="lbl">Reproducible pipeline</div>
+          <div class="num">6-phase</div>
+          <div class="lbl">CRISP-DM, 5 notebooks</div>
         </div>
         <div class="case-stat">
-          <div class="num">12-digit</div>
-          <div class="lbl">UPCs preserved (leading zeros)</div>
+          <div class="num">~0.87</div>
+          <div class="lbl">Classifier ROC-AUC</div>
         </div>
         <div class="case-stat">
-          <div class="num">1</div>
-          <div class="lbl">Ranked target list delivered</div>
+          <div class="num">Beat baseline</div>
+          <div class="lbl">On the true future</div>
         </div>
       </div>
       <div class="case-body">
         <div class="cs-block">
           <div class="cs-label">The problem</div>
           <div class="cs-content">
-            <p>SPS Commerce runs the largest retail business network in the industry, connecting
-            suppliers and retailers through EDI. The business question: <strong>which supplier
-            customers should the team follow up with first?</strong> The signal we went after &mdash;
-            a supplier already selling a product at retailers they are <em>not yet connected to</em>
-            through SPS. That connection gap is a concrete growth opportunity.</p>
+            <p>Everyone forecasts retail sales from past sales. The real question: does
+            <strong>information you know in advance</strong> &mdash; planned promotions, the calendar,
+            weather, stockouts &mdash; actually improve next-day prediction beyond past sales alone? We
+            framed every finding as an <em>association and predictive contribution</em>, never proof of
+            causation.</p>
           </div>
         </div>
         <div class="cs-block">
           <div class="cs-label">The data</div>
           <div class="cs-content">
-            <p>Item-level UPC transaction records (daily files, <strong>millions of rows</strong>)
-            joined to customer details through an organization-ID key. The quiet trap:
-            <strong>UPCs are 12-digit codes with leading zeros</strong> and the org IDs are enormous
-            integers &mdash; read either as a number and the data silently corrupts. Everything had to
-            be read as strings, and the cleaned outputs never opened in Excel, which would reformat
-            the IDs on contact.</p>
+            <p>FreshRetailNet-50K &mdash; <strong>4.5M rows</strong>, ~50,000 store-product series of
+            daily sales with promotion/holiday flags, discounts, stockout hours, and weather. We worked
+            a documented 100-series subset (2 cities &times; 5 stores &times; 10 products &times; 90
+            days = 9,000 complete rows) &mdash; a convenience sample, stated as such, not a random
+            draw.</p>
+          </div>
+        </div>
+        <div class="cs-block">
+          <div class="cs-label">The censoring trap</div>
+          <div class="cs-content">
+            <p>The sharpest insight: when a product sells out, its <em>observed</em> sales fall (mean
+            1.14 &rarr; 0.46 as stockout hours rise) &mdash; but that's mostly <strong>censoring, not
+            lost demand</strong>. We engineered a transparent proxy, est_demand = sales / availability,
+            and the picture flipped (1.14 &rarr; 4.72). We flagged it as an MNAR (Missing Not At Random)
+            pattern and kept observed sales as the primary target, with est_demand as a bounded proxy
+            &mdash; not a silent assumption.</p>
           </div>
         </div>
         <div class="cs-block">
           <div class="cs-label">My approach</div>
           <div class="cs-content">
-            <p><strong>ETL.</strong> Unzip and combine the raw daily files, keep only valid 12-digit
-            UPCs, clean and de-duplicate the item records.</p>
-            <p><strong>Join + EDA.</strong> Attach customer attributes &mdash; industry, revenue band,
-            tenure, existing SPS connection count &mdash; to each item via the seller organization ID.</p>
-            <p><strong>Enrichment.</strong> An external API lookup to find which retailers actually
-            carry each barcode in the market.</p>
-            <p><strong>Gap analysis + prioritization.</strong> Compare &ldquo;retailers who sell this
-            supplier's products&rdquo; against &ldquo;retailers they're connected to via SPS.&rdquo;
-            The difference is the opportunity. I ranked customers by that gap and built an ML-assisted
-            prioritizer to spend the limited API budget on the highest-value targets first, delivering
-            a <strong>ranked sales-target list</strong> in Excel / Power BI.</p>
+            <p><strong>No leakage, by construction.</strong> Next-day forecasts used only past-sales
+            lags and information known at forecast time; a strict chronological train/validation/test
+            split, with preprocessing fit on training only.</p>
+            <p><strong>Modeling.</strong> A log1p transform cut residual heteroscedasticity
+            (0.53 &rarr; 0.24); I tuned Multiple Linear Regression and Random Forest and reported
+            <strong>95% prediction intervals</strong> that held at ~95% test coverage.</p>
+            <p><strong>Honest evaluation.</strong> Scored once on the dataset's official future split
+            &mdash; the genuine next 7 days &mdash; with lags built across the history&rarr;future
+            boundary. A secondary classifier (&ldquo;high-sales day?&rdquo;) reached
+            <strong>ROC-AUC &asymp; 0.87</strong>, but binarizing discards information, so the
+            regression stayed the main model.</p>
           </div>
         </div>
         <div class="cs-block">
           <div class="cs-label">The result</div>
           <div class="cs-content">
-            <p>A <strong>reproducible pipeline</strong> &mdash; ordered notebooks plus standalone
-            scripts for unattended runs &mdash; that takes raw barcode data and hands the business team
-            a prioritized follow-up list instead of a spreadsheet dump. Each step writes the file the
-            next one reads, so the whole thing reruns on fresh data.</p>
+            <p>On genuinely unseen days, <strong>every model beat the naive baseline</strong> &mdash; so
+            advance information gives a modest but real lift over past sales alone. That is the answer to
+            the research question. The simple linear model held up best on RMSE; the forest's
+            within-sample edge did <em>not</em> carry into the true future.</p>
           </div>
         </div>
         <div class="cs-block">
           <div class="cs-label">What I'd do next</div>
           <div class="cs-content">
-            <p>Scale the API enrichment with caching and rate-limit handling, add fuzzy product
-            matching for barcodes the lookup misses, and automate a refresh so the target list
-            regenerates as new transaction data lands.</p>
+            <p>A 90-day window can't show annual seasonality &mdash; I'd extend the history, move from a
+            convenience sample to a random draw across the full chain, and monitor MAE/RMSE for drift to
+            trigger scheduled retraining.</p>
           </div>
         </div>
         <div class="cs-block">
           <div class="cs-label">What I learned</div>
           <div class="cs-content">
-            <p>Two things. First, <strong>data-type discipline at the boundary</strong> &mdash;
-            leading zeros, oversized IDs &mdash; is the difference between a correct pipeline and
-            silent, invisible data loss. Second, an analysis is only worth anything if it maps to a
-            decision the business actually makes: here, <em>who to call next</em>.</p>
+            <p>Handling <strong>censoring honestly</strong> &mdash; naming the MNAR pattern and bounding
+            the proxy instead of quietly imputing &mdash; mattered more than any model choice. And a
+            model only earns trust when it beats the baseline on data it has genuinely never seen.</p>
             <div class="cs-tags" style="margin-top:0.75rem;">
-              <span>Python</span><span>Pandas</span><span>R</span><span>ETL</span>
-              <span>External API</span><span>Power BI</span><span>Data Quality</span>
+              <span>Python</span><span>Pandas</span><span>Scikit-Learn</span><span>Regression</span>
+              <span>Classification</span><span>Chronological Validation</span><span>EDA</span>
             </div>
-            <p class="cs-note">Industry partnership &mdash; methodology and my role shown; proprietary
-            customer data withheld.</p>
+            <div class="cs-links" style="margin-top:0.75rem;">
+              <a href="mis480/">See the full analysis (5 notebooks) &rarr;</a>
+            </div>
+            <p class="cs-note">Four-person group project (Paul Ries, Feifei Li, Sem Masgina, Derrick
+            Nyagesuka); my work spans notebooks 01&ndash;05 &mdash; data prep, EDA, and modeling.</p>
           </div>
         </div>
       </div>
